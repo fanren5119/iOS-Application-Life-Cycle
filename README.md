@@ -15,6 +15,7 @@
     而且不会发出通知。当挂起时，程序还是停留在内存中，当系统内存低是，系统会把挂起
     的程序清除掉，为前台程序提供更多的内存。
         以下是程序状态变化图
+![程序状态变化](ApplicationStatus.png)
 ##2.应用程序各个状态的代理回调
         ① willFinishLaunchingWithOptions：进程启动但还没进入状态；
         ② didFinishLaunchingWithOptions：启动基本完成，准备开始运行；
@@ -28,7 +29,9 @@
         ⑦ applicationDidFinishLaunching：程序载入后运行；
 ##3.应用程序的生命周期
         ① 加载应用程序进入前台
+![应用程序进入前台](ApplicationAtForward.png)
         ② 加载应用程序进入后台
+![应用程序进入后台](ApplicationAtBackground.png)
         ③ 关于main函数
             main函数是程序启动的入口，在ios中，main函数的功能被最小化，他的主要工
         作都交给了UIKit.framework;
@@ -48,6 +51,7 @@
 ##4.响应中断
         ① 当一个基于警告式的中断发生，比如打电话，这是程序会进入Inactive状态，处理的
     流程图如下：
+![响应中断](ApplicationBreak.png)
         在ios中，通知不会把程序变为inactive状态，通知会显示在状态栏上，如果拉下状态
     栏，程序会变为Inactive状态；如果把状态栏放回去，程序变回active状态；
         按锁屏键也是另一种程序的中断，当按下锁屏键，系统屏蔽了所有的触摸事件，把app
@@ -62,6 +66,7 @@
             当程序回到active状态，applicationDidBecomeActive应该重新开始上述任务。
 ##5.程序推到后台
         流程图如下：
+![程序进入后台](RunInBackground.png)
         程序进入后台之后的处理：
         ① 保存数据信息；
         ② 释放内存：在后台每个程序都应该释放最大的内存，否则当内存不足时，系统会终
@@ -72,6 +77,7 @@
     去请求后台运行时间。
 ##6.返回前台运行
         流程图如下：
+![程序在前台运行](RunInForward.png)
         当app处于挂起状态时，他是不能执行任何代码的，因此他不能处理在挂起期间发过
     来的通知，比如方向改变，时间改变等。在程序返回前台时，程序都要处理这些通知。
 ##7.程序的终止
@@ -81,14 +87,14 @@
         main RunLoop负责处理用户相关的事件，UIApplication对象在程序启动时启动main
     RunLoop，他处理事件和更新视图的界面。
         main RunLoop处理事件的架构图如下：
-            
+![main RunLoop](MainRunLoop.png)
         用户操作设备，相关的操作事件被系统生成并通过UIKit的指定端口分发。事件在内部
     排成队列，一个一个的分发到main RunLoop去做，UIApplication对象是第一个收到事件的 
     对象，他决定事件如何被处理。触摸事件分发到主窗口，窗口再分发到对应触摸事件的
     View。
         大部分的事件可以在你的应用内分发，类似触摸事件，远程操控事件（线控耳机等）
     都是由app得response对象处理的。
-    
+        ios中，response对象有UIApplication对象，view对象，ViewController对象等等；
         
         
     
