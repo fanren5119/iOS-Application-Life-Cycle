@@ -30,6 +30,7 @@
 ##3.应用程序的生命周期
         ① 加载应用程序进入前台
 ![应用程序进入前台](ApplicationAtForward.png)
+
         ② 加载应用程序进入后台
 ![应用程序进入后台](ApplicationAtBackground.png)
         ③ 关于main函数
