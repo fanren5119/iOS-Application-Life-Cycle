@@ -16,18 +16,34 @@
 
 @implementation AppDelegate
 
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(nullable NSDictionary *)launchOptions NS_AVAILABLE_IOS(6_0)
+{
+    NSLog(@"willFinishLaunchingWithOptions");
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    
+    NSLog(@"didFinishLaunchingWithOptions");
+    return YES;
+}
+
+- (void)applicationWillResignActive:(UIApplication *)application
+{
+    NSLog(@"applicationWillResignActive");
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    NSLog(@"applicationDidBecomeActive");
+}
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    
+    NSLog(@"applicationDidEnterBackground");
     self.backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         [self endBackgoundTask];
     }];
@@ -64,6 +80,18 @@
     if (self.backgroundTask != UIBackgroundTaskInvalid) {
         [self endBackgoundTask];
     }
+    
+    NSLog(@"applicationWillEnterForeground");
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+    NSLog(@"applicationWillTerminate");
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+    NSLog(@"applicationDidFinishLaunching");
 }
 
 
