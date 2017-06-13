@@ -1,10 +1,10 @@
-#ios生命周期
+# ios生命周期
         iOS的应用程序的生命周期，还有程序是运行在前台还是后台，应用程序各个状态的
     变换，这些对于开发者都是很重要的。程序在后台时，会受到系统的很多限制，这样可以
     提高电池的使用和用户体验。
 ![ios生命周期](ApplicationCycle.png)
     
-##1.应用程序的状态
+## 1.应用程序的状态
         ① Not running：未运行，程序没启动；
         ② Inactive：未激活，程序在前台运行，不过没有接收时间，在没有事件处理情况下
     程序通常停留在这个状态；
@@ -17,7 +17,7 @@
     的程序清除掉，为前台程序提供更多的内存。
         以下是程序状态变化图
 ![程序状态变化](ApplicationStatus.png)
-##2.应用程序各个状态的代理回调
+## 2.应用程序各个状态的代理回调
         ① willFinishLaunchingWithOptions：进程启动但还没进入状态；
         ② didFinishLaunchingWithOptions：启动基本完成，准备开始运行；
         ③ applicationWillResignActive：应用程序将要进入非活动状态，在此期间，应用
@@ -28,7 +28,7 @@
         ⑥ applicationWillTerminate：应用程序将要推出，通常用来保存数据和一些推出前
     的清理工作；这个需要设置UIApplicationExitsOnSuspend的键值；
         ⑦ applicationDidFinishLaunching：程序载入后运行；
-##3.应用程序的生命周期
+## 3.应用程序的生命周期
         ① 加载应用程序进入前台
 ![应用程序进入前台](ApplicationAtForward.png)
 
@@ -51,7 +51,7 @@
             第三个参数确定了主要应用程序类的名称，这里设为nil，表示使用默认的程序
         类UIApplication；
             第四个参数是程序自定义的代理类名，这个类负责系统和代码之间的交互。
-##4.响应中断
+## 4.响应中断
         ① 当一个基于警告式的中断发生，比如打电话，这是程序会进入Inactive状态，处理的
     流程图如下：
 ![响应中断](ApplicationBreak.png)
@@ -68,7 +68,7 @@
             E.减少OpenGL ES的帧率；
             F.挂起任何分发队列和不重要的操作队列
             当程序回到active状态，applicationDidBecomeActive应该重新开始上述任务。
-##5.程序推到后台
+## 5.程序推到后台
         流程图如下：
 ![程序进入后台](RunInBackground.png)
 
@@ -80,16 +80,16 @@
     让你完成这些任务，如果超过时间还有未完成的任务，你的程序就会被终止而从内存中
     清除。如果需要长时间运行任务，可以调用beginBackgroundTaskWithExpirationHandler
     去请求后台运行时间。
-##6.返回前台运行
+## 6.返回前台运行
         流程图如下：
 ![程序在前台运行](RunInForward.png)
 
         当app处于挂起状态时，他是不能执行任何代码的，因此他不能处理在挂起期间发过
     来的通知，比如方向改变，时间改变等。在程序返回前台时，程序都要处理这些通知。
-##7.程序的终止
+## 7.程序的终止
         app如果终止了，系统会调用app的代理方法 applicationWillTerminate，这样你可
     以做一些清理工作，这个方法也有5秒钟的限制，超时后方法会返回程序，从内存中清楚。
-##8.main RunLoop 主运行循环
+## 8.main RunLoop 主运行循环
         main RunLoop负责处理用户相关的事件，UIApplication对象在程序启动时启动main
     RunLoop，他处理事件和更新视图的界面。
         main RunLoop处理事件的架构图如下：
